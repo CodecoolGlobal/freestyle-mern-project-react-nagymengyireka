@@ -1,0 +1,30 @@
+import './Modal.css';
+
+function Modal({ onClose, onPlayAgain, isWon }) {
+    const handleClose = () => {
+        onClose();
+    }
+
+    const handlePlayAgain = () => {
+        onPlayAgain();
+    }
+
+    if (isWon === false || isWon === true) {
+        return (
+            <div className="modal-container">
+                <div className="modal">
+                    <h2>{isWon ? 'You Won!' : 'You Lost!'}</h2>
+                    <p>Amount of lost or gained coins</p>
+                    <div className="modal-buttons">
+                        <button onClick={handleClose}>To Main Page</button>
+                        <button onClick={handlePlayAgain}>Play Again</button>
+                    </div>
+                </div>
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
+
+export default Modal;

@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>coin balance, player icon and later history key</header>
+      <div className='playerData'>coin balance, player icon and later history key</div>
       <div className='playArea'>
         {game === 'highlow' ? (
           <HighLow onBack={handleBack}/>
