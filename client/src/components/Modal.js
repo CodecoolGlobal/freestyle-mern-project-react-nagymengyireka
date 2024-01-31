@@ -3,10 +3,12 @@ import './Modal.css';
 function Modal({ onClose, onPlayAgain, isWon }) {
     const handleClose = () => {
         onClose();
+        //send patch request with outcome: game info pushed into history and balance updated
     }
 
     const handlePlayAgain = () => {
         onPlayAgain();
+        //send patch request with outcome
     }
 
     if (isWon === false || isWon === true) {

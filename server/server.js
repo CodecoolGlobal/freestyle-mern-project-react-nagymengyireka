@@ -7,3 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.listen(5000, () => {console.log('App is running on port 5000')});
+
+app.patch('/api/users/history', (req, res) => {
+
+})

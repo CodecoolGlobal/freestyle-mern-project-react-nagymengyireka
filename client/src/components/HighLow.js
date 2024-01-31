@@ -3,12 +3,12 @@ import Modal from './Modal';
 
 function HighLow({ onBack }) {
     const [deck, setDeck] = useState(null);
-    const [dealtCard, setDealtCard] = useState(null);
-    const [drawnCard, setDrawnCard] = useState(null);
+    const [dealerCard, setDealerCard] = useState(null);
+    const [playerCard, setPlayerCard] = useState(null);
     const [prediction, setPrediction] = useState(null);
     const [isWon, setIsWon] = useState(null);
     //balance - come up with a formula on how much coin is gained/lost based on the cards
-    //when Modal buttons are clicked a post request is also sent with the object: {game_type: 'highlow', isWon: isWon state, balance: Number (offset of coins)}
+    //when Modal buttons are clicked a patch request is also sent with the object: {game_type: 'highlow', isWon: isWon state, balance: Number (offset of coins)}
     //the players coin_balance is updated with the number based on the isWon key and the game object is pushed into the game_history key
 
 
@@ -44,8 +44,8 @@ function HighLow({ onBack }) {
 
     const handlePlayAgain = () => {
         setDeck(null);
-        setDealtCard(null);
-        setDrawnCard(null);
+        setDealerCard(null);
+        setPlayerCard(null);
         setPrediction(null);
         setIsWon(null);
     };
@@ -54,9 +54,9 @@ function HighLow({ onBack }) {
         const response = await fetch(`https://www.deckofcardsapi.com/api/deck/${deck}/draw/?count=1`);
         const data = await response.json();
         if (dealt) {
-            setDealtCard(data.cards[0]);
+            setDealerCard(data.cards[0]);
         } else {
-            setDrawnCard(data.cards[0]);
+            setPlayerCard(data.cards[0]);
             setOutcome();
         }
     }
@@ -72,9 +72,9 @@ function HighLow({ onBack }) {
     }
 
     const setOutcome = () => {
-        if (dealtCard && drawnCard) {
-            const dealerValue = convertValue(dealtCard);
-            const playerValue = convertValue(drawnCard);
+        if (dealerCard && playerCard) {
+            const dealerValue = convertValue(dealerCard);
+            const playerValue = convertValue(playerCard);
             if (dealerValue > playerValue && prediction === 'lower') {
                 setIsWon(true);
             } else if (dealerValue < playerValue && prediction === 'higher') {
@@ -88,10 +88,10 @@ function HighLow({ onBack }) {
     }
 
     useEffect(() => {
-        if (drawnCard !== null) {
+        if (playerCard !== null) {
             setOutcome();
         }
-    }, [drawnCard]);
+    }, [playerCard]);
 
     return (
         <div className='highlow'>
@@ -99,11 +99,11 @@ function HighLow({ onBack }) {
             <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon}/>
             <div className='dealer'>
                 {prediction && <h1>Your prediction: {prediction}</h1>}
-                {dealtCard && <img src={dealtCard.image} alt={dealtCard.value + dealtCard.suit} />}
+                {dealerCard && <img src={dealerCard.image} alt={dealerCard.value + dealerCard.suit} />}
             </div>
-            {(prediction && !drawnCard) && <button onClick={() => fetchCard(false)}>Draw</button>}
+            {(prediction && !playerCard) && <button onClick={() => fetchCard(false)}>Draw</button>}
             <div className='player'>
-                {drawnCard && <img src={drawnCard.image} alt={drawnCard.value + drawnCard.suit} />}
+                {playerCard && <img src={playerCard.image} alt={playerCard.value + playerCard.suit} />}
                 <button onClick={() => setPrediction('lower')}>Lower</button>
                 <button onClick={() => setPrediction('same')}>Same</button>
                 <button onClick={() => setPrediction('higher')}>Higher</button>
