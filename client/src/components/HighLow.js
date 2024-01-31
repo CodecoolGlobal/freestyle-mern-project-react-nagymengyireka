@@ -7,11 +7,7 @@ function HighLow({ onBack, id }) {
     const [playerCard, setPlayerCard] = useState(null);
     const [prediction, setPrediction] = useState(null);
     const [isWon, setIsWon] = useState(null);
-    const [coin, setCoin] = useState(100);
-    //balance - come up with a formula on how much coin is gained/lost based on the cards
-    //when Modal buttons are clicked a patch request is also sent with the object: {game_type: 'highlow', isWon: isWon state, balance: Number (offset of coins)}
-    //the players coin_balance is updated with the number based on the isWon key and the game object is pushed into the game_history key
-
+    const [coin, setCoin] = useState(null);
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -21,7 +17,7 @@ function HighLow({ onBack, id }) {
             setDeck(deckData['deck_id']);
         }
 
-        if (deck === null) {      
+        if (deck === null) {
             fetchDeck();
         }
 
@@ -49,6 +45,7 @@ function HighLow({ onBack, id }) {
         setPlayerCard(null);
         setPrediction(null);
         setIsWon(null);
+        setCoin(null);
     };
 
     const fetchCard = async (dealt) => {
@@ -72,22 +69,62 @@ function HighLow({ onBack, id }) {
         return value;
     }
 
+    const calculateOdds = () => {
+        const dealerValue = convertValue(dealerCard);
+        const playerValue = convertValue(playerCard);
+        const totalPossibleOutcomes = 2 * (10 - dealerValue);
+
+        let favorableOutcomes = 0;
+
+        if (prediction === 'higher') {
+            for (let i = dealerValue + 1; i <= 10; i++) {
+                if (i > playerValue) {
+                    favorableOutcomes++;
+                }
+            }
+        } else if (prediction === 'lower') {
+            for (let i = 2; i < dealerValue; i++) {
+                if (i < playerValue) {
+                    favorableOutcomes++;
+                }
+            }
+        } else if (prediction === 'same') {
+            for (let i = 2; i <= 10; i++) {
+                if (i === dealerValue && i === playerValue) {
+                    favorableOutcomes++;
+                }
+            }
+
+            const odds = favorableOutcomes / totalPossibleOutcomes;
+            return odds;
+        }
+    }
+
+    const calculateBet = () => {
+        const base = 100;
+        const odds = calculateOdds();
+
+        const bet = Math.round(base * odds);
+        console.log(base + bet + odds);
+        return bet;
+    }
+
     const setOutcome = () => {
         if (dealerCard && playerCard) {
             const dealerValue = convertValue(dealerCard);
             const playerValue = convertValue(playerCard);
             if (dealerValue > playerValue && prediction === 'lower') {
                 setIsWon(true);
-                //set coin value based on cards
+                setCoin(calculateBet());
             } else if (dealerValue < playerValue && prediction === 'higher') {
                 setIsWon(true);
-                 //set coin value based on cards
+                setCoin(calculateBet());
             } else if (dealerValue === playerValue && prediction === 'same') {
                 setIsWon(true);
-                 //set coin value based on cards
+                setCoin(calculateBet());
             } else {
                 setIsWon(false);
-                 //set coin value based on cards
+                setCoin(calculateBet());
             }
         }
     }
@@ -101,7 +138,7 @@ function HighLow({ onBack, id }) {
     return (
         <div className='highlow'>
             <button onClick={handleBack}>Back</button>
-            <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon} balance={coin} name='highlow' playerId={id}/>
+            <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon} balance={coin} name='highlow' playerId={id} />
             <div className='dealer'>
                 {prediction && <h1>Your prediction: {prediction}</h1>}
                 {dealerCard && <img src={dealerCard.image} alt={dealerCard.value + dealerCard.suit} />}
