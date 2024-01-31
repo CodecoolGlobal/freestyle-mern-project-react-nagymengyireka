@@ -1,0 +1,56 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/082/622/original/poker-background-with-playing-cards-and-chips-on-green-casino-background-modern-poker-widescreen-wallpaper-vector.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  .profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Teljes képernyő magasságú konténer */
+  }
+  
+  .profile {
+    width: 150px;
+    height: 150px;
+    background-color: #0074D9; /* Választhatod saját színét */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Kör alakú profil */
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+
+  .button {
+    width: 90px;
+    height: 90px;
+    background-color: #92e3f5; /* Választhatod saját színét */
+    color: rgb(31, 101, 252);
+    border: none;
+    border-radius: 50%; /* Kör alakú gomb */
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: -50px;
+  }
+  
+  h4 {
+    margin: 5px 0; /* Fent és lent 5 pixel sorköz */
+  }
+  
+  
