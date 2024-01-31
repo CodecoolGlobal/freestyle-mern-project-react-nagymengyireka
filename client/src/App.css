@@ -35,9 +35,9 @@
 
 /* CSS styles for the header */
 header {
-  background-color: #333;
+  background-color: #171f14;
   color: white;
-  padding: 45px;
+  padding: 18px;
   position: fixed; /* Fixed position */
   width: 100%; /* Full width */
   top: 0; /* Align to the top */
@@ -45,23 +45,36 @@ header {
   justify-content: space-between; /* Align content to the right */
   align-items: center; /* Vertically center content */
 
+
 }
 
 #user-icon-img {
   position:absolute;
-  right: 7%;
+  right: 6%;
   top:23%;
 }
 
 #bal-icon {
   position:absolute;
   right: 10%;
-  top:23%;
+  top:35%
 }
 
+#casino-icon-img {
+  position:absolute;
+  left: 11%;
+  top:15%;
+}
 h4 {
   position: absolute;
-  right: 14%;
+  top: 10%;
+  right: 13%;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+}
+
+h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 

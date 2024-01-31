@@ -3,11 +3,12 @@ import './components/Header'
 import Header from './components/Header';
 
 function App() {
-  const user1IconUrl = 'https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png'
-  const balanceIconUrl= 'https://banner2.cleanpng.com/20180221/dpe/kisspng-money-gold-coin-icon-money-coins-5a8e30bcc3cc44.931351751519268028802.jpg'
+  const user1IconUrl = 'https://i.ibb.co/SX5bGSy/def-User-Pic.png'
+  const balanceIconUrl= "https://i.ibb.co/GMSCpzf/coinPic.png"
+  const casinoLogoUrl = 'https://i.ibb.co/b5S8JY8/cardDeck.png'
   return (
     <div className="App">
-      <Header userName={'Test'} balance={'001'} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
+      <Header casinoLogo={casinoLogoUrl} balance={'18500'} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
     </div>
   );
 }
