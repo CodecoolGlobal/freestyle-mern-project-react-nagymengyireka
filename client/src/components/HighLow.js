@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from './Modal';
 
-function HighLow({ onBack, id }) {
+function HighLow({ onBack, id, balance, updateBalance }) {
     const [deck, setDeck] = useState(null);
     const [dealerCard, setDealerCard] = useState(null);
     const [playerCard, setPlayerCard] = useState(null);
@@ -23,7 +23,6 @@ function HighLow({ onBack, id }) {
 
         return () => { abortController.abort() }
     }, [deck]);
-
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -100,6 +99,8 @@ function HighLow({ onBack, id }) {
         }
     }
 
+      
+
     const calculateBet = () => {
         const base = 100;
         const odds = calculateOdds();
@@ -115,16 +116,24 @@ function HighLow({ onBack, id }) {
             const playerValue = convertValue(playerCard);
             if (dealerValue > playerValue && prediction === 'lower') {
                 setIsWon(true);
-                setCoin(calculateBet());
+                setCoin(calculateBet())
+                const winAmount = 100;
+                updateBalance(balance + winAmount);
             } else if (dealerValue < playerValue && prediction === 'higher') {
                 setIsWon(true);
-                setCoin(calculateBet());
+                setCoin(calculateBet())
+                const winAmount = 100;
+                updateBalance(balance + winAmount);
             } else if (dealerValue === playerValue && prediction === 'same') {
                 setIsWon(true);
-                setCoin(calculateBet());
+                setCoin(calculateBet())
+                const winAmount = 100;
+                updateBalance(balance + winAmount);
             } else {
                 setIsWon(false);
-                setCoin(calculateBet());
+                setCoin(calculateBet())
+                const lossAmount = 100;
+                updateBalance(balance - lossAmount);
             }
         }
     }
