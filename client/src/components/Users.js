@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Users.css';
 
-function RenderUsers() {
-  const [users, setUsers] = useState(null)
+function RenderUsers({onSelect}) {
+  const [users, setUsers] = useState(null);
 
   useEffect(() => {
     async function fetchUsers() {
@@ -17,6 +17,11 @@ function RenderUsers() {
     fetchUsers()
   }, []);
 
+  function handleChoosePlayer(user){
+    onSelect(user)
+    console.log('works');
+  }
+
   if (users === null) {
     return <p>Loading...</p>;
   }
@@ -26,14 +31,14 @@ function RenderUsers() {
       <div className="profile-container">
         {users.map((user) => (
           <div className="profile" key={user._id}>
-            <label>
+            <label onClick={() => handleChoosePlayer(user)}>
             képnek a helye:
             </label>
             <br />
-            <label> 
+           {/*  <label> 
               Username:
               <h4>{user.username}</h4>
-            </label>
+            </label> */}
           </div>
         ))}
         <button className="button"> + </button>
