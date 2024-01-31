@@ -11,6 +11,8 @@ function App() {
   const casinoLogoUrl = 'https://i.ibb.co/b5S8JY8/cardDeck.png'
   const [game, setGame] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null)
+  const [balance, setBalance] = useState(1000); 
+
 
   const handleBack = () => {
     setGame(null);
@@ -21,10 +23,10 @@ function App() {
       {selectedPlayer ?
         (
           <div>
-            <Header casinoLogo={casinoLogoUrl} balance={'18500'} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
+            <Header casinoLogo={casinoLogoUrl} balance={18500} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
             <div className='playArea'>
               {game === 'highlow' ? (
-                <HighLow onBack={handleBack} id={selectedPlayer['_id']}/>
+               <HighLow onBack={handleBack} id={selectedPlayer['_id']} balance={balance} updateBalance={setBalance} />
               ) : game === 'blackjack' ? (
                 <div>
                   <button onClick={handleBack}>Go Back</button>
