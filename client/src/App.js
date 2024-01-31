@@ -23,7 +23,7 @@ function App() {
       {selectedPlayer ?
         (
           <div>
-            <Header casinoLogo={casinoLogoUrl} balance={18500} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
+            <Header casinoLogo={casinoLogoUrl} balance={balance} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
             <div className='playArea'>
               {game === 'highlow' ? (
                <HighLow onBack={handleBack} id={selectedPlayer['_id']} balance={balance} updateBalance={setBalance} />
