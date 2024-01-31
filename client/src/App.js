@@ -3,12 +3,10 @@ import { useState } from 'react';
 import HighLow from './components/HighLow';
 import RenderUsers from './components/Users.js';
 import Header from './components/Header';
+import BlackJack from './components/BlackJack'
 import './App.css';
 
 function App() {
-    const user1IconUrl = 'https://i.ibb.co/SX5bGSy/def-User-Pic.png'
-  const balanceIconUrl= "https://i.ibb.co/GMSCpzf/coinPic.png"
-  const casinoLogoUrl = 'https://i.ibb.co/b5S8JY8/cardDeck.png'
   const [game, setGame] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null)
 
@@ -21,14 +19,14 @@ function App() {
       {selectedPlayer ?
         (
           <div>
-            <Header casinoLogo={casinoLogoUrl} balance={'18500'} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
+            <Header balance={selectedPlayer['coin_balance']}/>
             <div className='playArea'>
               {game === 'highlow' ? (
                 <HighLow onBack={handleBack} id={selectedPlayer['_id']}/>
               ) : game === 'blackjack' ? (
                 <div>
-                  <button onClick={handleBack}>Go Back</button>
-                  <h1>Blackjack component comes here</h1>
+                  <button id="back-btn"onClick={handleBack}>Go Back</button>
+                  <BlackJack onBack={handleBack}/>
                 </div>
               ) : (
                 <div>

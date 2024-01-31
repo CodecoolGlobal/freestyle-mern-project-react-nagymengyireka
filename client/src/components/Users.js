@@ -19,7 +19,6 @@ function RenderUsers({onSelect}) {
 
   function handleChoosePlayer(user){
     onSelect(user)
-    console.log('works');
   }
 
   if (users === null) {
