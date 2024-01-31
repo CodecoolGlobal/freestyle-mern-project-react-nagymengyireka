@@ -4,13 +4,13 @@ function Modal({ onClose, onPlayAgain, isWon, balance, name, playerId }) {
     const game = {
         type: name,
         isWon: isWon,
-        coins: balance 
+        coins: balance
     }
-    
+
     const patchGame = async () => {
         const response = await fetch(`/api/users/${playerId}/history`, {
             method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(game)
         });
         const data = await response.json();
