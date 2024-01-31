@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import Modal from './Modal';
 
-function HighLow({ onBack }) {
+function HighLow({ onBack, id }) {
     const [deck, setDeck] = useState(null);
     const [dealerCard, setDealerCard] = useState(null);
     const [playerCard, setPlayerCard] = useState(null);
     const [prediction, setPrediction] = useState(null);
     const [isWon, setIsWon] = useState(null);
+    const [coin, setCoin] = useState(100);
     //balance - come up with a formula on how much coin is gained/lost based on the cards
     //when Modal buttons are clicked a patch request is also sent with the object: {game_type: 'highlow', isWon: isWon state, balance: Number (offset of coins)}
     //the players coin_balance is updated with the number based on the isWon key and the game object is pushed into the game_history key
@@ -77,12 +78,16 @@ function HighLow({ onBack }) {
             const playerValue = convertValue(playerCard);
             if (dealerValue > playerValue && prediction === 'lower') {
                 setIsWon(true);
+                //set coin value based on cards
             } else if (dealerValue < playerValue && prediction === 'higher') {
                 setIsWon(true);
+                 //set coin value based on cards
             } else if (dealerValue === playerValue && prediction === 'same') {
                 setIsWon(true);
+                 //set coin value based on cards
             } else {
                 setIsWon(false);
+                 //set coin value based on cards
             }
         }
     }
@@ -96,7 +101,7 @@ function HighLow({ onBack }) {
     return (
         <div className='highlow'>
             <button onClick={handleBack}>Back</button>
-            <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon}/>
+            <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon} balance={coin} name='highlow' playerId={id}/>
             <div className='dealer'>
                 {prediction && <h1>Your prediction: {prediction}</h1>}
                 {dealerCard && <img src={dealerCard.image} alt={dealerCard.value + dealerCard.suit} />}

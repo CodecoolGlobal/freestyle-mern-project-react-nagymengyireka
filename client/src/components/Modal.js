@@ -1,14 +1,30 @@
 import './Modal.css';
 
-function Modal({ onClose, onPlayAgain, isWon }) {
-    const handleClose = () => {
-        onClose();
-        //send patch request with outcome: game info pushed into history and balance updated
+function Modal({ onClose, onPlayAgain, isWon, balance, name, playerId }) {
+    const game = {
+        type: name,
+        isWon: isWon,
+        coins: balance 
+    }
+    
+    const patchGame = async () => {
+        const response = await fetch(`/api/users/${playerId}/history`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(game)
+        });
+        const data = await response.json();
+        return data;
     }
 
-    const handlePlayAgain = () => {
+    const handleClose = async () => {
+        await patchGame();
+        onClose();
+    }
+
+    const handlePlayAgain = async () => {
+        await patchGame();
         onPlayAgain();
-        //send patch request with outcome
     }
 
     if (isWon === false || isWon === true) {
