@@ -58,7 +58,7 @@ app.post('/api/users', (req, res) =>{
   const password = req.body.password;
   const emailAdress = req.body.emailAdress;
   const age = parseInt(req.body.age);
-const user = new User({
+const user = new Users({
   username,
   password,
   emailAdress,
