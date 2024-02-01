@@ -5,12 +5,12 @@ function Registration({ onFinished }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emailAdress, setEmailAdress] = useState("");
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState(null);
 
 
   function handleSubmit(e) {
     e.preventDefault();
-    if(username !== "" && password !== "" && emailAdress !== "" && age>0){
+    if(username !== "" && password !== "" && emailAdress !== "" && age>=18){
         const userData = { username, password, emailAdress, age };
         fetch("/api/users", {
           method: "POST",
@@ -25,7 +25,10 @@ function Registration({ onFinished }) {
           .catch((error) => {
             console.log(error);
           });
-    }else{
+    }else if(username !== "" && password !== "" && emailAdress !== "" && age<18){
+        window.alert("Are your parents know what you do? Go sleep little shit!")
+    }
+    else{
         window.alert("all fields must be filled in")
     }
   
