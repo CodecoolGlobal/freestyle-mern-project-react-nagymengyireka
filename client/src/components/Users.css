@@ -50,7 +50,11 @@ body, html {
   }
   
   h4 {
-    margin: 5px 0; /* Fent és lent 5 pixel sorköz */
+    margin: 5px 0; 
+  }
+
+  h5 {
+    margin: 0%;
   }
   
   
