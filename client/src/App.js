@@ -2,6 +2,7 @@ import { useState } from 'react';
 import HighLow from './components/HighLow';
 import RenderUsers from './components/Users.js';
 import Header from './components/Header';
+import BlackJack from './components/BlackJack'
 import './App.css';
 
 function App() {
@@ -32,8 +33,8 @@ function App() {
               <HighLow onBack={handleBack} id={selectedPlayer['_id']} balance={balance} updateBalance={setBalance} />
             ) : game === 'blackjack' ? (
               <div>
-                <button onClick={handleBack}>Go Back</button>
-                <h1>Blackjack component comes here</h1>
+                <button id="back-btn"onClick={handleBack}>Go Back</button>
+                <BlackJack onBack={handleBack}/>
               </div>
             ) : (
               <div>
