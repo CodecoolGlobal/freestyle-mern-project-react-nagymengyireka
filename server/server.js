@@ -37,7 +37,7 @@ app.patch('/api/users/:id/history', async (req, res) => {
       id++;
     }
 
-    player['game_history'].push({...req.body, id});
+    player['game_history'].push({ ...req.body, id });
 
     if (req.body.isWon === false) {
       player['coin_balance'] -= req.body.coins;
@@ -46,28 +46,42 @@ app.patch('/api/users/:id/history', async (req, res) => {
     }
 
     await player.save();
-    res.status(200).json({status: 'game_history succesfully updated'});
+    res.status(200).json({ status: 'game_history succesfully updated' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 })
 
-app.post('/api/users', (req, res) =>{
-  const username = req.body.username;
-  const password = req.body.password;
-  const emailAdress = req.body.emailAdress;
-  const age = parseInt(req.body.age);
-const user = new Users({
-  username,
-  password,
-  emailAdress,
-  age,
-  coin_balance: 1000,
-  game_history: []
-})
-user.save()
-.then(user => res.json(user))
-.then(res.status(200).json({status: 'User seuccesfully aded'}))
-.catch(err => res.status(400).json({succes:false}))
-})
+app.post('/api/users', async (req, res) => {
+  try {
+    const { username, password, emailAdress, age } = req.body;
+    const user = new Users({
+      username,
+      password,
+      emailAdress,
+      age,
+      coin_balance: 1000,
+      game_history: []
+    });
+
+    const savedUser = await user.save();
+    res.status(200).json({ status: 'User successfully added', user: savedUser });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ success: false });
+  }
+});
+
+
+
+app.delete('/api/users/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Users.findByIdAndDelete(id);
+    res.status(204).send(); 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Hiba történt a delete során' });
+  }
+});

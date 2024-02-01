@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import './Registration.css'
 
-function Registration({onFinished}) {
+function Registration({ onFinished }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emailAdress, setEmailAdress] = useState("");
@@ -29,46 +30,53 @@ function Registration({onFinished}) {
     }
   
   }
+
+  const handleBack = () => {
+    onFinished();
+  }
+
   return (
-    <>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <label>
-        Email Adress:
-        <input
-          type="text"
-          value={emailAdress}
-          onChange={(e) => setEmailAdress(e.target.value)}
-        />
-      </label>
-      <label>
-        Age:
-        <input
-          type="number"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-      </label>
-      <button type="submit">Registration</button>
-    </form>
-    <button onClick={() => onFinished()}>Back</button>
-    </>
-    
+    <div className="regForm">
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <label>
+          Email Adress:
+          <input
+            type="text"
+            value={emailAdress}
+            onChange={(e) => setEmailAdress(e.target.value)}
+          />
+        </label>
+        <label>
+          Age:
+          <input
+            type="number"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          />
+        </label>
+
+        <button onClick={handleBack}>Back</button>
+        <button type="submit">Registration</button>
+
+      </form>
+    </div>
+
   );
 }
 
