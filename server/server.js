@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import express from "express";
 import Users from "./model/User.js";
-import User from "./model/User.js";
+
 
 try {
   await mongoose.connect('mongodb+srv://arvamartin:arvamartin02@cluster0.bqytfu8.mongodb.net/casino');
@@ -53,7 +53,7 @@ app.patch('/api/users/:id/history', async (req, res) => {
   }
 })
 
-app.post('/api/new', (req, res) =>{
+app.post('/api/users', (req, res) =>{
   const username = req.body.username;
   const password = req.body.password;
   const emailAdress = req.body.emailAdress;

@@ -11,7 +11,7 @@ function Registration({onFinished}) {
     e.preventDefault();
 
     const userData = { username, password, emailAdress, age };
-    fetch("/api/new", {
+    fetch("/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
