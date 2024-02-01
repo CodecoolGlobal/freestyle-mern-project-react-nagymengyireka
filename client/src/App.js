@@ -6,9 +6,6 @@ import BlackJack from './components/BlackJack'
 import './App.css';
 
 function App() {
-  const user1IconUrl = 'https://i.ibb.co/SX5bGSy/def-User-Pic.png'
-  const balanceIconUrl = "https://i.ibb.co/GMSCpzf/coinPic.png"
-  const casinoLogoUrl = 'https://i.ibb.co/b5S8JY8/cardDeck.png'
   const [game, setGame] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null)
   const [balance, setBalance] = useState(null);
@@ -27,7 +24,7 @@ function App() {
     <div className="App">
       {selectedPlayer ? (
         <div>
-          <Header casinoLogo={casinoLogoUrl} balance={balance} iconURL={user1IconUrl} balanceIcon={balanceIconUrl} />
+          <Header balance={balance} />
           <div className='playArea'>
             {game === 'highlow' ? (
               <HighLow onBack={handleBack} id={selectedPlayer['_id']} balance={balance} updateBalance={setBalance} />
