@@ -25,6 +25,7 @@ function Registration({onFinished}) {
         console.log(error);
       });
   }
+  
   return (
     <>
     <form onSubmit={handleSubmit}>
