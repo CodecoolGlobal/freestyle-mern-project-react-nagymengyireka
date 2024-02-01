@@ -35,7 +35,7 @@
 
 /* CSS styles for the header */
 header {
-  background-color: #171f14;
+  background-color: hsl(104, 22%, 10%);
   color: white;
   padding: 18px;
   position: fixed; /* Fixed position */
@@ -44,6 +44,7 @@ header {
   display: flex; /* Use flexbox for layout */
   justify-content: space-between; /* Align content to the right */
   align-items: center; /* Vertically center content */
+  height: 65px;
 
 
 }
@@ -81,8 +82,23 @@ h2 {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 8%;
+  margin-top: 100px;
+
 }
+
+.logout {
+  position: fixed;
+  left: 20%;
+  top: 5%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.logout img {
+  width: 50px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  border-radius: 100;
+}
+
 
 
 
