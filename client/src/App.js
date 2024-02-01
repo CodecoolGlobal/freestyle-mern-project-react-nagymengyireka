@@ -18,8 +18,6 @@ function App() {
     setGame(null);
   }
 
-  //balance && console.log(balance);
-
   return (
     <div className="App">
       {selectedPlayer ?
