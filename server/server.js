@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import express from "express";
 import Users from "./model/User.js";
+import User from "./model/User.js";
 
 try {
   await mongoose.connect('mongodb+srv://arvamartin:arvamartin02@cluster0.bqytfu8.mongodb.net/casino');
@@ -50,4 +51,23 @@ app.patch('/api/users/:id/history', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+})
+
+app.post('/api/new', (req, res) =>{
+  const username = req.body.username;
+  const password = req.body.password;
+  const emailAdress = req.body.emailAdress;
+  const age = parseInt(req.body.age);
+const user = new User({
+  username,
+  password,
+  emailAdress,
+  age,
+  coin_balance: 1000,
+  game_history: []
+})
+user.save()
+.then(user => res.json(user))
+.then(res.status(200).json({status: 'User seuccesfully aded'}))
+.catch(err => res.status(400).json({succes:false}))
 })
