@@ -10,21 +10,25 @@ function Registration({ onFinished }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    const userData = { username, password, emailAdress, age };
-    fetch("/api/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userData),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-      })
-      .then(onFinished())
-      .catch((error) => {
-        console.log(error);
-      });
+    if(username !== "" && password !== "" && emailAdress !== "" && age>0){
+        const userData = { username, password, emailAdress, age };
+        fetch("/api/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+          })
+          .then(onFinished())
+          .catch((error) => {
+            console.log(error);
+          });
+    }else{
+        window.alert("all fields must be filled in")
+    }
+  
   }
 
   const handleBack = () => {
