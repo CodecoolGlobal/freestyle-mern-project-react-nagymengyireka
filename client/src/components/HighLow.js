@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './Modal';
+import './HighLow.css';
 
 function HighLow({ onBack, id, balance, updateBalance }) {
     const [deck, setDeck] = useState(null);
@@ -103,16 +104,26 @@ function HighLow({ onBack, id, balance, updateBalance }) {
         <div className='highlow'>
             <button onClick={handleBack}>Back</button>
             <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon} balance={coin} name='highlow' playerId={id} />
-            <div className='dealer'>
-                {prediction && <h1>Your prediction: {prediction}</h1>}
-                {dealerCard && <img src={dealerCard.image} alt={dealerCard.value + dealerCard.suit} />}
-            </div>
+            {prediction && <h1>Your prediction: {prediction}</h1>}
             {(prediction && !playerCard) && <button onClick={() => fetchCard(false)}>Draw</button>}
-            <div className='player'>
-                {playerCard && <img src={playerCard.image} alt={playerCard.value + playerCard.suit} />}
-                <button onClick={() => setPrediction('lower')}>Lower</button>
-                <button onClick={() => setPrediction('same')}>Same</button>
-                <button onClick={() => setPrediction('higher')}>Higher</button>
+            <div className='table'>
+                <div className='dealer'>
+                    {dealerCard && <img src={dealerCard.image} alt={dealerCard.value + dealerCard.suit} />}
+                </div>
+                <div className='player'>
+                    {playerCard ? 
+                    (
+                        <img src={playerCard.image} alt={playerCard.value + playerCard.suit} />
+                    ) : 
+                    (
+                    <div className='button-container'>
+                        
+                        <button onClick={() => setPrediction('lower')}>Lower</button>
+                        <button onClick={() => setPrediction('same')}>Same</button>
+                        <button onClick={() => setPrediction('higher')}>Higher</button>
+                    </div>
+                    )}
+                </div>
             </div>
         </div>
     )
