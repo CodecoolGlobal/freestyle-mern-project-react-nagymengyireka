@@ -53,24 +53,26 @@ app.patch('/api/users/:id/history', async (req, res) => {
   }
 })
 
-app.post('/api/users', (req, res) =>{
-  const username = req.body.username;
-  const password = req.body.password;
-  const emailAdress = req.body.emailAdress;
-  const age = parseInt(req.body.age);
-const user = new Users({
-  username,
-  password,
-  emailAdress,
-  age,
-  coin_balance: 1000,
-  game_history: []
-})
-user.save()
-.then(user => res.json(user))
-.then(res.status(200).json({status: 'User seuccesfully aded'}))
-.catch(err => res.status(400).json({succes:false}))
-})
+app.post('/api/users', async (req, res) => {
+  try {
+    const { username, password, emailAdress, age } = req.body;
+    const user = new Users({
+      username,
+      password,
+      emailAdress,
+      age,
+      coin_balance: 1000,
+      game_history: []
+    });
+
+    const savedUser = await user.save();
+    res.status(200).json({ status: 'User successfully added', user: savedUser });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ success: false });
+  }
+});
+
 
 
 app.delete('/api/users/:id', async (req, res) => {
