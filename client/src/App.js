@@ -47,7 +47,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <RenderUsers onSelect={setSelectedPlayer} />
+        <RenderUsers onSelect={setSelectedPlayer} setCoins={setBalance}/>
       )}
     </div>
   );
