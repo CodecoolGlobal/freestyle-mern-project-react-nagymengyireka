@@ -17,8 +17,8 @@ body, html {
   }
   
   .profile {
-    width: 150px;
-    height: 150px;
+    width: 0px;
+    height: 0px;
     background-color: #0074D9; /* Választhatod saját színét */
     color: white;
     border: none;
@@ -30,7 +30,7 @@ body, html {
     align-items: center;
     text-align: center;
     cursor: pointer;
-    margin: 10px;
+    margin: 100px;
   }
   
 

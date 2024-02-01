@@ -7,6 +7,8 @@ const userSchema = new Schema({
   username: String,
   password: String,
   icon: String,
+  emailAdress: String,
+  age: Number
 });
 
 export default model('User', userSchema)
