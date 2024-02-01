@@ -44,7 +44,7 @@ header {
   display: flex; /* Use flexbox for layout */
   justify-content: space-between; /* Align content to the right */
   align-items: center; /* Vertically center content */
-
+  height: 65px;
 
 }
 
@@ -81,7 +81,7 @@ h2 {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 8%;
+  margin-top: 100px;
 }
 
 
