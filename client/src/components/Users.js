@@ -49,6 +49,7 @@ function RenderUsers({onSelect, setCoins}) {
   if (users === null) {
     return <p>Loading...</p>;
   }
+  
 const handleRegistrationEnd = () =>{
   setPlusclicked(false)
 }

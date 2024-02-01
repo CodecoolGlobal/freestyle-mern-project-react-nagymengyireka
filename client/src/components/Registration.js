@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import './Registration.css'
 
 function Registration({onFinished}) {
   const [username, setUsername] = useState("");
@@ -25,6 +26,10 @@ function Registration({onFinished}) {
         console.log(error);
       });
   }
+
+  const handleBack = () => {
+    onFinished();
+  }
   
   return (
     <>
@@ -40,7 +45,7 @@ function Registration({onFinished}) {
       <label>
         Password:
         <input
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -63,7 +68,7 @@ function Registration({onFinished}) {
       </label>
       <button type="submit">Registration</button>
     </form>
-    <button onClick={() => onFinished()}>Back</button>
+    <button onClick={handleBack}>Back</button>
     </>
     
   );
