@@ -5,6 +5,7 @@ import Registration from './Registration';
 function RenderUsers({onSelect, setCoins}) {
   const [users, setUsers] = useState(null);
   const [plusClicked, setPlusclicked] = useState(false)
+  const [userDeleted, setUserDeleted] = useState(false);
   const randomPictures = [
     'https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAEy-Hi3lntqni03_IgMHV_6nbWR5sG5EuE11oKCej1YqlHvxzo6lfyF7L_JXrJaoZIkY&usqp=CAU',
@@ -19,18 +20,25 @@ function RenderUsers({onSelect, setCoins}) {
 ]
 
 
-  useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const response = await fetch('/api/users');
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error('Hiba a felhasználók lekérésekor:', error);
-      }
+useEffect(() => {
+  async function fetchUsers() {
+    try {
+      const response = await fetch('/api/users');
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.error('Hiba a felhasználók lekérésekor:', error);
     }
-    fetchUsers()
-  }, []);
+  }
+  
+  if (userDeleted) {
+    fetchUsers();
+    setUserDeleted(false); 
+  } else {
+    fetchUsers(); 
+  }
+}, [userDeleted]); 
+
 
   function handleChoosePlayer(user){
     onSelect(user)
@@ -45,6 +53,19 @@ const registrationEnd = () =>{
   setPlusclicked(false)
 }
 
+
+async function deleteUsers(id){
+  const response = await fetch(`/api/users/${id}`,{
+    method: 'DELETE',
+  });
+  if (response.ok){
+    const updateUsers = users.filter((item)=>item._id !==id);
+    setUsers(updateUsers);
+    setUserDeleted(true);
+  }
+}
+
+
   return (
    <>
    {plusClicked?(<Registration onFinished={registrationEnd}/>):(<div className='proflandwall'>
@@ -54,6 +75,7 @@ const registrationEnd = () =>{
           <label onClick={() => handleChoosePlayer(user)}>
           <img src={randomPictures[Math.floor(Math.random() * randomPictures.length)]} alt="User Profile" style={{ maxWidth: '140px' }}></img>
           </label>
+          <button onClick={() => deleteUsers(user._id)}>Delete</button>
           <br />
          {/*  <label> 
             Username:
