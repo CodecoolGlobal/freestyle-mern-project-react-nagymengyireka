@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Users.css';
 import Registration from './Registration';
-function RenderUsers({onSelect}) {
+
+function RenderUsers({onSelect, setCoins}) {
   const [users, setUsers] = useState(null);
   const [plusClicked, setPlusclicked] = useState(false)
   const randomPictures = [
@@ -33,6 +34,7 @@ function RenderUsers({onSelect}) {
 
   function handleChoosePlayer(user){
     onSelect(user)
+    setCoins(user['coin_balance']);
     console.log('works');
   }
 
