@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import './Users.css';
-
+import Registration from './Registration';
 function RenderUsers({onSelect}) {
   const [users, setUsers] = useState(null);
-
+  const [plusClicked, setPlusclicked] = useState(false)
   const randomPictures = [
     'https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAEy-Hi3lntqni03_IgMHV_6nbWR5sG5EuE11oKCej1YqlHvxzo6lfyF7L_JXrJaoZIkY&usqp=CAU',
@@ -39,25 +39,31 @@ function RenderUsers({onSelect}) {
   if (users === null) {
     return <p>Loading...</p>;
   }
+const registrationEnd = () =>{
+  setPlusclicked(false)
+}
 
   return (
-    <div className='proflandwall'>
-      <div className="profile-container">
-        {users.map((user) => (
-          <div className="profile" key={user._id}>
-            <label onClick={() => handleChoosePlayer(user)}>
-            <img src={randomPictures[Math.floor(Math.random() * randomPictures.length)]} alt="User Profile" style={{ maxWidth: '140px' }}></img>
-            </label>
-            <br />
-           {/*  <label> 
-              Username:
-              <h4>{user.username}</h4>
-            </label> */}
-          </div>
-        ))}
-        <button className="button"> + </button>
-      </div>
+   <>
+   {plusClicked?(<Registration onFinished={registrationEnd}/>):(<div className='proflandwall'>
+    <div className="profile-container">
+      {users.map((user) => (
+        <div className="profile" key={user._id}>
+          <label onClick={() => handleChoosePlayer(user)}>
+          <img src={randomPictures[Math.floor(Math.random() * randomPictures.length)]} alt="User Profile" style={{ maxWidth: '140px' }}></img>
+          </label>
+          <br />
+         {/*  <label> 
+            Username:
+            <h4>{user.username}</h4>
+          </label> */}
+        </div>
+      ))}
+      <button className="button" onClick={() => setPlusclicked(true)}> + </button>
     </div>
+  </div>)}
+   </> 
+    
   );
 
 }
