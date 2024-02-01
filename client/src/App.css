@@ -2,16 +2,13 @@ header {
   background-color: hsl(104, 22%, 10%);
   color: white;
   padding: 18px;
-  position:absolute;
-  width: 100%; /* Full width */
-  top: 0; /* Align to the top */
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Align content to the right */
-  align-items: center; /* Vertically center content */
+  position:fixed;
+  width: 100%; 
+  top: 0; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
   height: 65px;
-  height: 65px;
-
-
 }
 
 #user-icon-img {
@@ -31,9 +28,10 @@ header {
   left: 11%;
   top:15%;
 }
+
 h4 {
   position: absolute;
-  top: 10%;
+  top: 35px;
   right: 13%;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 20px;
@@ -252,8 +250,8 @@ button {
   font-size: 16px;
   padding: 10px 20px;
   margin: 10px;
-  background-color: #26210d; /* Set your desired button color */
-  color: #fff; /* Set your desired text color */
+  background-color: #26210d; 
+  color: #fff; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -263,7 +261,7 @@ button {
 
 button:hover {
   color: black;
-  background-color: #d5c96a; /* Set your desired button hover color */
+  background-color: #d5c96a; 
 }
 
 
