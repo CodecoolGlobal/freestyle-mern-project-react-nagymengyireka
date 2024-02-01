@@ -37,7 +37,7 @@ app.patch('/api/users/:id/history', async (req, res) => {
       id++;
     }
 
-    player['game_history'].push({...req.body, id});
+    player['game_history'].push({ ...req.body, id });
 
     if (req.body.isWon === false) {
       player['coin_balance'] -= req.body.coins;
@@ -46,7 +46,7 @@ app.patch('/api/users/:id/history', async (req, res) => {
     }
 
     await player.save();
-    res.status(200).json({status: 'game_history succesfully updated'});
+    res.status(200).json({ status: 'game_history succesfully updated' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

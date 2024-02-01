@@ -20,25 +20,25 @@ function RenderUsers({onSelect, setCoins}) {
 ]
 
 
-useEffect(() => {
-  async function fetchUsers() {
-    try {
-      const response = await fetch('/api/users');
-      const data = await response.json();
-      setUsers(data);
-    } catch (error) {
-      console.error('Hiba a felhasználók lekérésekor:', error);
+  useEffect(() => {
+    const abortController = new AbortController();
+    async function fetchUsers() {
+      try {
+        const response = await fetch('/api/users');
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error('Hiba a felhasználók lekérésekor:', error);
+      }
     }
-  }
-  
-  if (userDeleted) {
-    fetchUsers();
-    setUserDeleted(false); 
-  } else {
-    fetchUsers(); 
-  }
-}, [userDeleted]); 
-
+    if (userDeleted) {
+      fetchUsers();
+      setUserDeleted(false); 
+    } else if (!plusClicked) {
+      fetchUsers(); 
+    }
+    return () => { abortController.abort() }
+  }, [plusClicked, userDeleted]);
 
   function handleChoosePlayer(user){
     onSelect(user)
@@ -49,7 +49,7 @@ useEffect(() => {
   if (users === null) {
     return <p>Loading...</p>;
   }
-const registrationEnd = () =>{
+const handleRegistrationEnd = () =>{
   setPlusclicked(false)
 }
 
@@ -68,7 +68,9 @@ async function deleteUsers(id){
 
   return (
    <>
-   {plusClicked?(<Registration onFinished={registrationEnd}/>):(<div className='proflandwall'>
+   {plusClicked ?
+   (<Registration onFinished={handleRegistrationEnd}/>) : 
+   (<div className='proflandwall'>
     <div className="profile-container">
       {users.map((user) => (
         <div className="profile" key={user._id}>
