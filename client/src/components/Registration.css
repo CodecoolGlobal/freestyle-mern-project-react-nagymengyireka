@@ -5,11 +5,12 @@ form {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #d5c96a;
+    background-color: #e8de91;
 }
 
-body {
+.regForm {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -29,8 +30,8 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
-button {
+/* 
+/* button {
     background-color: #4caf50;
     color: white;
     padding: 10px 15px;
@@ -42,16 +43,16 @@ button {
 button:hover {
     color: black;
     background-color: #d5c96a;
-}
+} */ */
 
 input {
     font-size: 16px;
 }
 
-button[type="submit"]:hover {
+/* button[type="submit"]:hover {
     color: black;
     background-color: #d5c96a;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
