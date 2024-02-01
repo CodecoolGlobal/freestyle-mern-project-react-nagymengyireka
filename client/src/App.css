@@ -1,44 +1,8 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* CSS styles for the header */
 header {
   background-color: hsl(104, 22%, 10%);
   color: white;
   padding: 18px;
-  position: fixed; /* Fixed position */
+  position:absolute;
   width: 100%; /* Full width */
   top: 0; /* Align to the top */
   display: flex; /* Use flexbox for layout */
@@ -84,7 +48,191 @@ h2 {
   justify-content: center;
   flex-direction: row;
   margin-top: 100px;
+}
 
+#start-btn {
+  color: rgb(34, 31, 31);
+  background: linear-gradient(rgb(167, 115, 11), rgb(73, 47, 8));
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: xx-large;
+  display: inline-block;
+  position: fixed;
+  top: 45%;
+  left: 47%;
+  width: 200px;
+  height: 150px;
+  border-radius: 20px;
+  border: 3px rgb(69, 50, 16) ridge;
+}
+
+#start-btn:hover {
+  background: linear-gradient(rgb(161, 131, 69), rgb(87, 71, 47));
+}
+
+#dealer-seat {
+  position: fixed;
+  top: 15%;
+  left: 44%;
+  background: linear-gradient(rgb(167, 115, 11), rgb(73, 47, 8));
+  border-radius: 10px;
+  border: 3px rgb(69, 50, 16) ridge;
+  width: 245px;
+  height: 170px;
+}
+
+#dc {
+  position: fixed;
+  top: 20%;
+  left: 47%;
+}
+
+#dc2 {
+  position: fixed;
+  top: 20%;
+  left: 52%;
+}
+
+#bc {
+  position: fixed;
+  top: 15.8%;
+  left: 46%;
+}
+
+
+#dealer-count {
+  position: fixed;
+  top: 27%;
+  left: 44.5%;
+  border-radius: 20%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color:antiquewhite;
+  border: 1px solid black;
+  padding: 5px
+}
+
+#user-seat {
+  position: fixed;
+  top: 75%;
+  left: 44%;
+  background: linear-gradient(rgb(167, 115, 11), rgb(73, 47, 8));
+  border-radius: 10px;
+  border: 3px rgb(69, 50, 16) ridge;
+  width: 320px;
+  height: 170px;
+}
+
+#uc {
+  position: fixed;
+  top: 80%;
+  left: 47%;
+}
+
+#uc2 {
+  position: fixed;
+  top: 80%;
+  left: 52%;
+}
+
+#uc3 {
+  position: fixed;
+  top: 80%;
+  left: 57%;
+}
+
+#user-count {
+  position: fixed;
+  top: 85%;
+  left: 44.5%;
+  border-radius: 20%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color:antiquewhite;
+  border: 1px solid black;
+  padding: 5px
+}
+
+#deck-box {
+  position: fixed;
+  top: 16%;
+  right: 2%;
+  background: linear-gradient(rgb(167, 115, 11), rgb(73, 47, 8));
+  border-radius: 10px;
+  border: 3px rgb(69, 50, 16) ridge;
+  width: 245px;
+  height: 170px;
+}
+
+#deck-box-place {
+  position: fixed;
+  top: 17.85%;
+  right: 6.3%;
+  background: linear-gradient(rgb(204, 170, 101), rgb(166, 121, 53));
+  border-radius: 10px;
+  border: 3px rgb(69, 50, 16) ridge;
+  width: 100px;
+  height: 140px;
+}
+
+#deck {
+  position: fixed;
+  top: 20%;
+  right: 5%;
+}
+
+#back-btn {
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  font-size: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  width: 150px;
+  background-color:#171f14;
+  color: white;
+  border: 2px #0c0f0b ridge;
+}
+
+#back-btn:hover{
+  background-color:#3d4f37;
+}
+
+#hit-btn {
+  color: rgb(57, 48, 48);
+  background: linear-gradient(rgb(92, 159, 72),rgb(42, 196, 18));
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: xx-large;
+  display: inline-block;
+  position: fixed;
+  top: 63%;
+  left: 52%;
+  width: 120px;
+  height: 70px;
+  border-radius: 20px;
+  border: 3px rgb(4, 3, 1) ridge;
+}
+
+#hit-btn:hover {
+  background: linear-gradient(rgb(155, 173, 150),rgb(44, 255, 11));
+}
+
+#stand-btn {
+  color: rgb(57, 48, 48);
+  background: linear-gradient(rgb(220, 104, 84), rgb(224, 19, 9));
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 800;
+  font-size: xx-large;
+  display: inline-block;
+  position: fixed;
+  top: 63%;
+  left: 44%;
+  width: 120px;
+  height: 70px;
+  border-radius: 20px;
+  border: 3px rgb(4, 3, 1) ridge;
+}
+
+#stand-btn:hover {
+  background: linear-gradient(rgb(204, 147, 137),rgb(255, 14, 2));
 }
 
 .logout {
