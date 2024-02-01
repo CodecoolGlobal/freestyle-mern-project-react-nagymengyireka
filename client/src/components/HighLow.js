@@ -7,7 +7,7 @@ function HighLow({ onBack, id, balance, updateBalance }) {
     const [playerCard, setPlayerCard] = useState(null);
     const [prediction, setPrediction] = useState(null);
     const [isWon, setIsWon] = useState(null);
-    const [coin, setCoin] = useState(null);
+    const [coin, setCoin] = useState(100);
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -44,7 +44,7 @@ function HighLow({ onBack, id, balance, updateBalance }) {
         setPlayerCard(null);
         setPrediction(null);
         setIsWon(null);
-        setCoin(null);
+        setCoin(100);
     };
 
     const fetchCard = async (dealt) => {
@@ -68,47 +68,6 @@ function HighLow({ onBack, id, balance, updateBalance }) {
         return value;
     }
 
-    const calculateOdds = () => {
-        const dealerValue = convertValue(dealerCard);
-        const playerValue = convertValue(playerCard);
-        const totalPossibleOutcomes = 2 * (10 - dealerValue);
-
-        let favorableOutcomes = 0;
-
-        if (prediction === 'higher') {
-            for (let i = dealerValue + 1; i <= 10; i++) {
-                if (i > playerValue) {
-                    favorableOutcomes++;
-                }
-            }
-        } else if (prediction === 'lower') {
-            for (let i = 2; i < dealerValue; i++) {
-                if (i < playerValue) {
-                    favorableOutcomes++;
-                }
-            }
-        } else if (prediction === 'same') {
-            for (let i = 2; i <= 10; i++) {
-                if (i === dealerValue && i === playerValue) {
-                    favorableOutcomes++;
-                }
-            }
-
-            const odds = favorableOutcomes / totalPossibleOutcomes;
-            return odds;
-        }
-    }
-
-      
-
-    const calculateBet = () => {
-        const base = 100;
-        const odds = calculateOdds();
-
-        const bet = Math.round(base * odds);
-        console.log(base + bet + odds);
-        return bet;
-    }
 
     const setOutcome = () => {
         if (dealerCard && playerCard) {
@@ -116,33 +75,29 @@ function HighLow({ onBack, id, balance, updateBalance }) {
             const playerValue = convertValue(playerCard);
             if (dealerValue > playerValue && prediction === 'lower') {
                 setIsWon(true);
-                setCoin(calculateBet())
-                const winAmount = 100;
-                updateBalance(balance + winAmount);
+                //console.log(coin);
+                updateBalance(balance + coin);
             } else if (dealerValue < playerValue && prediction === 'higher') {
                 setIsWon(true);
-                setCoin(calculateBet())
-                const winAmount = 100;
-                updateBalance(balance + winAmount);
+                //console.log(coin);
+                updateBalance(balance + coin);
             } else if (dealerValue === playerValue && prediction === 'same') {
                 setIsWon(true);
-                setCoin(calculateBet())
-                const winAmount = 100;
-                updateBalance(balance + winAmount);
+                //console.log(coin);
+                updateBalance(balance + coin);
             } else {
                 setIsWon(false);
-                setCoin(calculateBet())
-                const lossAmount = 100;
-                updateBalance(balance - lossAmount);
+                //console.log(coin);
+                updateBalance(balance - coin);
             }
         }
     }
 
     useEffect(() => {
-        if (playerCard !== null) {
+        if (playerCard !== null && dealerCard !== null && prediction !== null) {
             setOutcome();
         }
-    }, [playerCard]);
+    }, [playerCard, dealerCard, prediction]);
 
     return (
         <div className='highlow'>

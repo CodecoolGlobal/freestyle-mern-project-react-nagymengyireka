@@ -10,8 +10,8 @@ function App() {
   const casinoLogoUrl = 'https://i.ibb.co/b5S8JY8/cardDeck.png'
   const [game, setGame] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null)
-  const [balance, setBalance] = useState(1000);
- 
+  const [balance, setBalance] = useState(null);
+
 
   const handleBack = () => {
     setGame(null);
