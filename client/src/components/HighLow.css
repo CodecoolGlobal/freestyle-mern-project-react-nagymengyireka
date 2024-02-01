@@ -1,0 +1,53 @@
+.highlow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.highlow button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #26210d; /* Set your desired button color */
+    color: #fff;/* Set your desired text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: fit-content;
+}
+
+.highlow button:hover {
+    color: black;
+    background-color: #d5c96a; /* Set your desired button hover color */
+}
+
+.dealer, .player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dealer img, .player img {
+    width: 250px; /* Set your desired card image width */
+    height: auto;
+    margin-bottom: 10px;
+    padding-right: 5px;
+}
+
+h1 {
+    color: #fff; /* Set your desired text color */
+}
+
+.button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.table{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
