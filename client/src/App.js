@@ -18,6 +18,7 @@ function App() {
     setGame(null);
   }
 
+  
   return (
     <div className="App">
       {selectedPlayer ?
