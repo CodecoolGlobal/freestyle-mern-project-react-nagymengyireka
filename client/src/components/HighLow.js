@@ -115,12 +115,10 @@ function HighLow({ onBack, id, balance, updateBalance }) {
                     (
                         <img src={playerCard.image} alt={playerCard.value + playerCard.suit} />
                     ) : 
-                    (
-                    <div id='button-container'>
-                        
-                        <button onClick={() => setPrediction('lower')}>Lower</button>
-                        <button onClick={() => setPrediction('same')}>Same</button>
+                    <div className='button-container'>
                         <button onClick={() => setPrediction('higher')}>Higher</button>
+                        <button onClick={() => setPrediction('same')}>Same</button>
+                        <button onClick={() => setPrediction('lower')}>Lower</button>
                     </div>
                     )}
                 </div>

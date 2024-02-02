@@ -83,10 +83,9 @@ function RenderUsers({ onSelect, setCoins }) {
                       ]
                     }
                     alt="User Profile"
-                    style={{ maxWidth: "140px" }}
+                    style={{ width: "140px", height: '140px'}}
                   ></img>
                   <h5>{user.username}</h5>
-                  <h5>{user.coin_balance}</h5>
                 </label>
                 <button onClick={() => deleteUsers(user._id)}>Delete</button>
                 <br />
