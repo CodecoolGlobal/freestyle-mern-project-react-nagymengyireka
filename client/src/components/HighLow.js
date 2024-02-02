@@ -101,22 +101,22 @@ function HighLow({ onBack, id, balance, updateBalance }) {
     }, [playerCard, dealerCard, prediction]);
 
     return (
-        <div className='highlow'>
+        <div id='highlow'>
             <button onClick={handleBack}>Back</button>
             <Modal onClose={handleBack} onPlayAgain={handlePlayAgain} isWon={isWon} balance={coin} name='highlow' playerId={id} />
             {prediction && <h1>Your prediction: {prediction}</h1>}
             {(prediction && !playerCard) && <button onClick={() => fetchCard(false)}>Draw</button>}
-            <div className='table'>
-                <div className='dealer'>
+            <div id='table'>
+                <div id='dealer'>
                     {dealerCard && <img src={dealerCard.image} alt={dealerCard.value + dealerCard.suit} />}
                 </div>
-                <div className='player'>
+                <div id='player'>
                     {playerCard ? 
                     (
                         <img src={playerCard.image} alt={playerCard.value + playerCard.suit} />
                     ) : 
                     (
-                    <div className='button-container'>
+                    <div id='button-container'>
                         
                         <button onClick={() => setPrediction('lower')}>Lower</button>
                         <button onClick={() => setPrediction('same')}>Same</button>

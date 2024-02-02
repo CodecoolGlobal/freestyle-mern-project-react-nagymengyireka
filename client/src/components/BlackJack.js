@@ -15,10 +15,11 @@ function BlackJack() {
   const [userThirdCardValue, setUserThirdCardValue] = useState("");
   const [userThirdCardImage, setUserThirdCardImage] = useState("");
   const [isExtraCard, setIsExtraCard] = useState(false);
-  const [endGame, setEndGame] = useState(false)
-  const [result, setResult] = useState("")
-  const [dealerScore, setDealerScore] = useState(0)
-  const [userScore, setUserScore] = useState(0)
+  const [endGame, setEndGame] = useState(false);
+  const [isWon, setIsWon] = useState(false);
+  const [isLost, setIsLost] = useState(false);
+  const [isDraw, setIsDraw] = useState(false)
+  const [userScore, setUserScore] = useState(0);
 
   const blankCardImage = "https://i.ibb.co/G9TrwDL/singlecard.png";
 
@@ -57,14 +58,10 @@ function BlackJack() {
         setDealerSecondCardImage(data.cards?.[2]?.image);
         setDealerCardValue(data.cards?.[0].code.charAt(0));
         setDealerSecondCardValue(data.cards?.[2].code.charAt(0));
-        setTimeout(() => {
-          setUserCardImage(data.cards?.[1]?.image);
-          setUserCardValue(data.cards?.[1].code.charAt(0));
-        }, 1500);
-        setTimeout(() => {
-          setUserSecondCardImage(data.cards?.[3]?.image);
-          setUserSecondCardValue(data.cards?.[3].code.charAt(0));
-        }, 3000);
+        setUserCardImage(data.cards?.[1]?.image);
+        setUserCardValue(data.cards?.[1].code.charAt(0));
+        setUserSecondCardImage(data.cards?.[3]?.image);
+        setUserSecondCardValue(data.cards?.[3].code.charAt(0));
         setUserThirdCardValue(data.cards?.[5].code.charAt(0));
         setUserThirdCardImage(data.cards?.[5]?.image);
       };
@@ -84,18 +81,56 @@ function BlackJack() {
       : "";
   }
 
+  const dealerValue =
+    isExtraCard || endGame
+      ? convertCardsToValue(dealerCardValue) +
+        convertCardsToValue(dealerSecondCardValue)
+      : convertCardsToValue(dealerCardValue);
+
+  const userValue = isExtraCard
+    ? convertCardsToValue(userCardValue) +
+      convertCardsToValue(userSecondCardValue) +
+      convertCardsToValue(userThirdCardValue)
+    : convertCardsToValue(userCardValue) +
+      convertCardsToValue(userSecondCardValue);
+
   function addCard() {
     setIsExtraCard(true);
   }
   function end() {
-    setEndGame(true)
+    setEndGame(true);
   }
 
-
+  useEffect(() => {
+    if (endGame) {
+      if (userValue > dealerValue && userValue <= 21) {
+        setIsWon(true);
+      } else if (userValue === dealerValue) {
+        setIsDraw(true)
+      } else {
+        setIsLost(true);
+      }
+    }
+  }, [endGame, userValue, dealerValue]);
 
   return (
     <>
-      {startGame ? (
+      {isWon ? (
+        <>
+        <div id="won">You won 100🪙</div>
+        <button onClick={end}>Play again</button>
+        </>
+      ) : isLost ? (
+        <>
+        <div id="lost">You lost 100🪙</div>
+        <button onClick={end}>Play again</button>
+        </>
+      ) : isDraw ? (
+        <>
+        <div id="draw">Its a push, coins returned!🪙</div>
+        <button onClick={end}>Play again</button>
+        </>
+      ) : startGame ? (
         <div>
           <div id="deck-box">
             <div id="deck-box-place">
@@ -117,10 +152,15 @@ function BlackJack() {
                   id="dc"
                   width="70"
                 />
-                <img src={blankCardImage} alt="blank-card" id="bc" width="218"/>
+                <img
+                  src={blankCardImage}
+                  alt="blank-card"
+                  id="bc"
+                  width="218"
+                />
               </>
             )}
-            {isExtraCard && (
+            {(isExtraCard || endGame) && (
               <img
                 src={dealerSecondCardImage}
                 alt="dealer-card2"
@@ -128,12 +168,7 @@ function BlackJack() {
                 width="70"
               />
             )}
-            <div id="dealer-count">
-              {isExtraCard ? 
-                  convertCardsToValue(dealerCardValue) +
-                  convertCardsToValue(dealerSecondCardValue)
-                : convertCardsToValue(dealerCardValue)}
-            </div>
+            <div id="dealer-count">{dealerValue}</div>
           </div>
 
           <div id="user-seat">
@@ -156,14 +191,7 @@ function BlackJack() {
                 width="70"
               ></img>
             )}
-            <div id="user-count">
-              {isExtraCard
-                ? convertCardsToValue(userCardValue) +
-                  convertCardsToValue(userSecondCardValue) +
-                  convertCardsToValue(userThirdCardValue)
-                : convertCardsToValue(userCardValue) +
-                  convertCardsToValue(userSecondCardValue)}
-            </div>
+            <div id="user-count">{userValue}</div>
           </div>
           <button id="hit-btn" onClick={addCard}>
             HIT
