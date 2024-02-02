@@ -41,7 +41,7 @@ function App() {
             )}
           </div>
           <div className='logout' onClick={handleLogout}>
-            <img src='https://as1.ftcdn.net/v2/jpg/02/09/95/40/1000_F_209954044_IOwtl94IDxluqbEYgkrf8hYI8tyDQwPZ.jpg' alt='Logout' />
+            <img src='https://i.ibb.co/7bRGhfz/homebtn.png' alt='Logout' />
           </div>
         </div>
       ) : (

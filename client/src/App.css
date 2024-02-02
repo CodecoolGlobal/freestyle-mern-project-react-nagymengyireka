@@ -1,44 +1,56 @@
 header {
-  background-color: hsl(104, 22%, 10%);
-  color: white;
+  background-color: #1a1a1a; /* Dark background for elegance */
+  color: #f2e9e4; /* Soft off-white for text, providing contrast and readability */
   padding: 18px;
-  position:fixed;
-  width: 100%; 
-  top: 0; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  height: 65px;
+  position: fixed;
+  width: 100%; /* Full width */
+  top: 0; /* Align to the top */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out the child elements */
+  align-items: center; /* Vertically center content */
+  height: 65px; /* Fixed height */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensure the header is always on top */
+  border-bottom: 2px solid #cda45e; /* Use a solid, gold-like color for elegance */
+  font-family: 'Helvetica Neue', sans-serif; /* Modern, readable font */
 }
 
 #user-icon-img {
-  position:absolute;
+  position: absolute;
   right: 6%;
-  top:23%;
+  top: 23%;
 }
 
 #bal-icon {
-  position:absolute;
-  right: 10%;
-  top:35%
+  position: absolute;
+  left: 8%;
+  top: 11%;
+  width: 90px;
+  height: 90px;
 }
 
 #casino-icon-img {
-  position:absolute;
+  position: absolute;
   left: 11%;
-  top:15%;
+  top: 15%;
 }
 
 h4 {
   position: absolute;
-  top: 35px;
-  right: 13%;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  top: 26%;
+  right: 10%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: 20px;
 }
 
 h2 {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: sans-serif;
+  position: fixed;
+  left: 15%;
+  font-weight: 900;
+  font-size: xx-large;
+  color: #e8de91;
 }
 
 .playArea {
@@ -51,7 +63,8 @@ h2 {
 #start-btn {
   color: rgb(34, 31, 31);
   background: linear-gradient(rgb(167, 115, 11), rgb(73, 47, 8));
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-weight: 800;
   font-size: xx-large;
   display: inline-block;
@@ -97,16 +110,16 @@ h2 {
   left: 46%;
 }
 
-
 #dealer-count {
   position: fixed;
   top: 27%;
   left: 44.5%;
   border-radius: 20%;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background-color:antiquewhite;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: antiquewhite;
   border: 1px solid black;
-  padding: 5px
+  padding: 5px;
 }
 
 #user-seat {
@@ -143,10 +156,11 @@ h2 {
   top: 85%;
   left: 44.5%;
   border-radius: 20%;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background-color:antiquewhite;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: antiquewhite;
   border: 1px solid black;
-  padding: 5px
+  padding: 5px;
 }
 
 #deck-box {
@@ -182,21 +196,23 @@ h2 {
   top: 20%;
   left: 10%;
   font-size: 30px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   width: 150px;
-  background-color:#171f14;
+  background-color: #171f14;
   color: white;
   border: 2px #0c0f0b ridge;
 }
 
-#back-btn:hover{
-  background-color:#3d4f37;
+#back-btn:hover {
+  background-color: #3d4f37;
 }
 
 #hit-btn {
   color: rgb(57, 48, 48);
-  background: linear-gradient(rgb(92, 159, 72),rgb(42, 196, 18));
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: linear-gradient(rgb(92, 159, 72), rgb(42, 196, 18));
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-weight: 800;
   font-size: xx-large;
   display: inline-block;
@@ -210,13 +226,14 @@ h2 {
 }
 
 #hit-btn:hover {
-  background: linear-gradient(rgb(155, 173, 150),rgb(44, 255, 11));
+  background: linear-gradient(rgb(155, 173, 150), rgb(44, 255, 11));
 }
 
 #stand-btn {
   color: rgb(57, 48, 48);
   background: linear-gradient(rgb(220, 104, 84), rgb(224, 19, 9));
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-weight: 800;
   font-size: xx-large;
   display: inline-block;
@@ -230,20 +247,23 @@ h2 {
 }
 
 #stand-btn:hover {
-  background: linear-gradient(rgb(204, 147, 137),rgb(255, 14, 2));
+  background: linear-gradient(rgb(204, 147, 137), rgb(255, 14, 2));
 }
 
 .logout {
   position: fixed;
   left: 20%;
-  top: 5%;
+  top: 50%;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 .logout img {
-  width: 50px; 
-  height: 50px; 
-  border-radius: 100;
+  position: fixed;
+    width: 60px;
+    height: 60px;
+    left: 3%;
+    border-radius: 20px;
+    top: 3%;
 }
 
 button {
@@ -264,6 +284,52 @@ button:hover {
   background-color: #d5c96a; 
 }
 
+#won {
+  background-color: rgb(13, 87, 13);
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px black ridge;
+  position: fixed;
+  top: 50%;
+  left: 45%;
+}
 
+#draw {
+  background-color: rgb(172, 168, 168);
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px black ridge;
+  position: fixed;
+  top: 45%;
+}
 
-
+#lost {
+  background-color: rgb(128, 24, 24);
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px black ridge;
+  position: fixed;
+  top: 50%;
+  left: 45%;
+}
