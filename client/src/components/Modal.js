@@ -29,11 +29,11 @@ function Modal({ onClose, onPlayAgain, isWon, balance, name, playerId }) {
 
     if ((isWon === false && balance) || (isWon === true && balance)) {
         return (
-            <div id="modal-container">
-                <div id="modal">
+            <div className="modal-container">
+                <div className="modal">
                     <h2>{isWon ? 'You Won!' : 'You Lost!'}</h2>
                     <p>{isWon ? `+ ${balance} coins gained` : `- ${balance} coins lost`}</p>
-                    <div id="modal-buttons">
+                    <div className="modal-buttons">
                         <button onClick={handleClose}>To Main Page</button>
                         <button onClick={handlePlayAgain}>Play Again</button>
                     </div>

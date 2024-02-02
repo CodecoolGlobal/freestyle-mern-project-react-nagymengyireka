@@ -250,14 +250,7 @@ h2 {
   background: linear-gradient(rgb(204, 147, 137), rgb(255, 14, 2));
 }
 
-.logout {
-  position: fixed;
-  left: 20%;
-  top: 50%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.logout img {
+.logout{
   position: fixed;
     width: 60px;
     height: 60px;

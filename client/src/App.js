@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       {selectedPlayer ? (
         <div>
-          <Header balance={balance} />
+          <Header balance={balance} logOut={handleLogout}/>
           <div className='playArea'>
             {game === 'highlow' ? (
               <HighLow onBack={handleBack} id={selectedPlayer['_id']} balance={balance} updateBalance={setBalance} />
@@ -39,9 +39,6 @@ function App() {
                 <button onClick={() => { setGame('highlow') }}>High-Low</button>
               </div>
             )}
-          </div>
-          <div className='logout' onClick={handleLogout}>
-            <img src='https://i.ibb.co/7bRGhfz/homebtn.png' alt='Logout' />
           </div>
         </div>
       ) : (
