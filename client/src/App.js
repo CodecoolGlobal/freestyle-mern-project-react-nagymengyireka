@@ -16,8 +16,8 @@ function App() {
   }
 
   const handleLogout = () => {
-    setSelectedPlayer(null); // Reset selected player
-    setGame(null); // Reset game
+    setSelectedPlayer(null);
+    setGame(null);
   }
 
   return (
