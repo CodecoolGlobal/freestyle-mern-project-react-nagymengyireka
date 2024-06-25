@@ -13,7 +13,7 @@ function Modal({ onClose, onPlayAgain, isWon, balance, name, playerId }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(game)
         });
-        const data = await response.json(); //if status is 200 setBalance, if not then don't => next tw week
+        const data = await response.json();
         return data;
     }
 

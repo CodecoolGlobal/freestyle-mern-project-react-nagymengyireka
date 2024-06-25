@@ -5,12 +5,12 @@ function Registration({ onFinished }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emailAdress, setEmailAdress] = useState("");
-  const [age, setAge] = useState(null);
+  const [age, setAge] = useState("");
 
 
   function handleSubmit(e) {
     e.preventDefault();
-    if(username !== "" && password !== "" && emailAdress !== "" && age>=18){
+    if(age>=18){
         const userData = { username, password, emailAdress, age };
         fetch("/api/users", {
           method: "POST",
@@ -18,18 +18,12 @@ function Registration({ onFinished }) {
           body: JSON.stringify(userData),
         })
           .then((response) => response.json())
-          .then((response) => {
-            console.log(response);
-          })
           .then(onFinished())
           .catch((error) => {
             console.log(error);
           });
-    }else if(username !== "" && password !== "" && emailAdress !== "" && age<18){
-        window.alert("Are your parents know what you do? Go sleep little shit!")
-    }
-    else{
-        window.alert("all fields must be filled in")
+    }else{
+        window.alert("Oh oh! You must be at least 18 years old to use this site!")
     }
   
   }
@@ -47,6 +41,7 @@ function Registration({ onFinished }) {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -55,14 +50,16 @@ function Registration({ onFinished }) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </label>
         <label>
           Email Adress:
           <input
-            type="text"
+            type="email"
             value={emailAdress}
             onChange={(e) => setEmailAdress(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -71,11 +68,12 @@ function Registration({ onFinished }) {
             type="number"
             value={age}
             onChange={(e) => setAge(e.target.value)}
+            required
           />
         </label>
 
-        <button onClick={handleBack}>Back</button>
-        <button type="submit">Registration</button>
+        <button type="button" onClick={handleBack}>Back</button>
+        <button type="submit">Register</button>
 
       </form>
     </div>

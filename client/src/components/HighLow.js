@@ -11,7 +11,6 @@ function HighLow({ onBack, id, balance, updateBalance }) {
     const [coin, setCoin] = useState(100);
 
     useEffect(() => {
-        const abortController = new AbortController();
         const fetchDeck = async () => {
             const response = await fetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
             const deckData = await response.json();
@@ -22,17 +21,14 @@ function HighLow({ onBack, id, balance, updateBalance }) {
             fetchDeck();
         }
 
-        return () => { abortController.abort() }
     }, [deck]);
 
     useEffect(() => {
-        const abortController = new AbortController();
 
         if (deck) {
             fetchCard(true);
         }
 
-        return () => { abortController.abort() }
     }, [deck]);
 
     const handleBack = () => {
@@ -76,19 +72,15 @@ function HighLow({ onBack, id, balance, updateBalance }) {
             const playerValue = convertValue(playerCard);
             if (dealerValue > playerValue && prediction === 'lower') {
                 setIsWon(true);
-                //console.log(coin);
                 updateBalance(balance + coin);
             } else if (dealerValue < playerValue && prediction === 'higher') {
                 setIsWon(true);
-                //console.log(coin);
                 updateBalance(balance + coin);
             } else if (dealerValue === playerValue && prediction === 'same') {
                 setIsWon(true);
-                //console.log(coin);
                 updateBalance(balance + coin);
             } else {
                 setIsWon(false);
-                //console.log(coin);
                 updateBalance(balance - coin);
             }
         }

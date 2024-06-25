@@ -5,16 +5,16 @@ import Users from "./model/User.js";
 
 try {
   await mongoose.connect('mongodb+srv://arvamartin:arvamartin02@cluster0.bqytfu8.mongodb.net/casino');
-  console.log('MongoDB kapcsolat sikeresen létrehozva');
+  console.log('Successfully connected to MongoDB');
 } catch (error) {
-  console.error('MongoDB kapcsolat hiba:', error);
+  console.error('Error when connecting to MongoDB', error);
 }
 
 const app = express();
 
 app.use(express.json());
 
-app.listen(5000, () => { console.log('App is running on port 5000') });
+app.listen(5000, () => { console.log('App is listening on port 5000') });
 
 
 app.get('/api/users', async (req, res) => {
@@ -23,7 +23,7 @@ app.get('/api/users', async (req, res) => {
     res.json(users);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Szar van a levesben a lekérdezés során' });
+    res.status(500).json({ message: 'Error fetching users' , err});
   }
 });
 
@@ -46,7 +46,7 @@ app.patch('/api/users/:id/history', async (req, res) => {
     }
 
     await player.save();
-    res.status(200).json({ status: 'game_history succesfully updated' });
+    res.status(200).json({ status: 'Game History succesfully updated' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -82,6 +82,6 @@ app.delete('/api/users/:id', async (req, res) => {
     res.status(204).send(); 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Hiba történt a delete során' });
+    res.status(500).json({ message: 'Error when deleting user' });
   }
 });

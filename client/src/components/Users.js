@@ -20,14 +20,13 @@ function RenderUsers({ onSelect, setCoins }) {
   ];
 
   useEffect(() => {
-    const abortController = new AbortController();
     async function fetchUsers() {
       try {
         const response = await fetch("/api/users");
         const data = await response.json();
         setUsers(data);
       } catch (error) {
-        console.error("Hiba a felhasználók lekérésekor:", error);
+        console.error(error);
       }
     }
     if (userDeleted) {
@@ -36,15 +35,11 @@ function RenderUsers({ onSelect, setCoins }) {
     } else if (!plusClicked) {
       fetchUsers();
     }
-    return () => {
-      abortController.abort();
-    };
   }, [plusClicked, userDeleted]);
 
   function handleChoosePlayer(user) {
     onSelect(user);
     setCoins(user["coin_balance"]);
-    console.log("works");
   }
 
   if (users === null) {
@@ -71,7 +66,7 @@ function RenderUsers({ onSelect, setCoins }) {
       {plusClicked ? (
         <Registration onFinished={handleRegistrationEnd} />
       ) : (
-        <div className="proflandwall">
+        <div className="profileandwall">
           <div className="profile-container">
             {users.map((user) => (
               <div className="profile" key={user._id}>
@@ -91,10 +86,7 @@ function RenderUsers({ onSelect, setCoins }) {
                 <br />
               </div>
             ))}
-            <button className="button" onClick={() => setPlusclicked(true)}>
-              {" "}
-              +{" "}
-            </button>
+            <button className="button" onClick={() => setPlusclicked(true)}> + </button>
           </div>
         </div>
       )}
