@@ -4,7 +4,7 @@ import Users from "./model/User.js";
 
 
 try {
-  await mongoose.connect('mongodb+srv://arvamartin:arvamartin02@cluster0.bqytfu8.mongodb.net/casino');
+  await mongoose.connect('YOUR_CONNECTION_STRING');
   console.log('Successfully connected to MongoDB');
 } catch (error) {
   console.error('Error when connecting to MongoDB', error);
